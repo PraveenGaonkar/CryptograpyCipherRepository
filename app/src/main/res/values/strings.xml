@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Ciphers</string>
+    <string name="cryptographic">Cryptographic</string>
+    <string name="ciphers">Ciphers</string>
+    <string name="caesar_cipher">Caesar Cipher</string>
+    <string name="viginere_cipher">Viginere Cipher</string>
+    <string name="one_time_pad">One Time Pad</string>
+    <string name="stream_cipher">Stream Cipher</string>
+    <string name="plaintext">PLAINTEXT</string>
+    <string name="ciphertext">CIPHERTEXT</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="playfair_cipher">Playfair Cipher</string>
+</resources>

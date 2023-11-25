@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    tools:context=".Activity.SplashActivity">
+
+    <LinearLayout
+        android:transitionName="gradient"
+        android:id="@+id/gradient"
+        android:background="@drawable/blue_gradient"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cryptographic"
+            android:textSize="40sp"
+            android:textColor="@color/white"
+            android:textStyle="bold"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ciphers"
+            android:textSize="40sp"
+            android:textColor="@color/white"
+            android:textStyle="bold"/>
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_marginTop="80dp"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:src="@drawable/encryption_icon"/>
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:indeterminateTint="#E64C4C"
+        app:layout_anchor="@+id/gradient"
+        app:layout_anchorGravity="top|center"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
