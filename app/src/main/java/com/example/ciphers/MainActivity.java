@@ -12,12 +12,13 @@ import com.example.ciphers.Activity.AffineCipherActivity;
 import com.example.ciphers.Activity.CaesarCipherActivity;
 import com.example.ciphers.Activity.OneTimePadActivity;
 import com.example.ciphers.Activity.PlayfairCipherActivity;
+import com.example.ciphers.Activity.StreamCipherActivity;
 import com.example.ciphers.Activity.ViginereCipherActivity;
 import com.google.android.material.button.MaterialButton;
 
 public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
-    MaterialButton button1,button2,button3,button5,button6,button7;
+    MaterialButton button1,button2,button3,button4,button5,button6,button7;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         button1 = findViewById(R.id.button1);
         button2 = findViewById(R.id.button2);
         button3 = findViewById(R.id.button3);
+        button4 = findViewById(R.id.button4);
         button5 = findViewById(R.id.button5);
         button6 = findViewById(R.id.button6);
         button7 = findViewById(R.id.button7);
@@ -52,6 +54,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, OneTimePadActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, StreamCipherActivity.class);
                 startActivity(intent);
             }
         });
