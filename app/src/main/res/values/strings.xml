@@ -150,7 +150,7 @@
         <b>Key Generation:</b>\n
         The key in the Vigenère cipher is a keyword. The key is repeated to match the length of the plaintext.\n\n\n
 
-        <b>Encryption Algorithm:</b>\n
+        <b>Encryption:</b>\n
         <b>Input:</b> Plain text (message) and a key (keyword).\n
         <b>Algorithm:</b>\n
         Repeat the key to match the length of the plaintext.\n
@@ -165,7 +165,7 @@
         <b>Output:</b>\n
         Ciphertext (encrypted message).\n\n\n
 
-        <b>Decryption Algorithm:</b>\n
+        <b>Decryption:</b>\n
         <b>Input:</b> Ciphertext (encrypted message) and the same key (keyword).\n
         <b>Algorithm:</b>\n
         Repeat the key to match the length of the ciphertext.\n
@@ -226,16 +226,16 @@
         M N P Q S\n
         T U V X Z\n\n
 
-        <b>Encryption:</b>
-        <b>Plaintext Preparation:</b>
-        1. Break the plaintext into pairs of letters (digraphs).
-        2. Adjust the plaintext as needed (e.g., add an "X" between repeated letters or append an "X" if the length is odd).
-        <b>Digraph Encryption:</b>
-        <b>For each digraph:</b>
-        1. If the two letters are in the same row, replace each letter with the letter to its right (wrapping around to the left if necessary).
-        2. If the two letters are in the same column, replace each letter with the letter below it (wrapping around to the top if necessary).
-        3. If the two letters form a rectangle, replace each letter with the letter at the opposite corner of the rectangle.
-        <b>Example encryption:</b>
+        <b>Encryption:</b>\n
+        <b>Plaintext Preparation:</b>\n
+        1. Break the plaintext into pairs of letters (digraphs).\n
+        2. Adjust the plaintext as needed (e.g., add an "X" between repeated letters or append an "X" if the length is odd).\n
+        <b>Digraph Encryption:</b>\n
+        <b>For each digraph:</b>\n
+        1. If the two letters are in the same row, replace each letter with the letter to its right (wrapping around to the left if necessary).\n
+        2. If the two letters are in the same column, replace each letter with the letter below it (wrapping around to the top if necessary).\n
+        3. If the two letters form a rectangle, replace each letter with the letter at the opposite corner of the rectangle.\n
+        <b>Example encryption:</b>\n
         <b>Plaintext:</b> "HELLO"\n
         <b>Digraphs:</b> "HE," "LX," "LO" (adding an "X" to "LL" to avoid issues with repeated letters)\n
         <b>Encrypted digraphs:</b> "RC," "LQ," "LD"\n\n\n

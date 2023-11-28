@@ -123,18 +123,27 @@ public class OneTimePadEncryptionFragment extends Fragment {
 
         int[] cipher = new int[key.length()];
 
-        for (int i = 0; i < key.length(); i++) {
-            cipher[i] = (text.charAt(i) - 'A' + key.charAt(i) - 'A') % 26;
-        }
+        for (int i = 0, j = 0; i < text.length(); i++) {
+            char currentChar = text.charAt(i);
 
-        for (int i = 0; i < key.length(); i++) {
-            if (cipher[i] < 0) {
-                cipher[i] += 26;
+            // Skip spaces
+            if (Character.isWhitespace(currentChar)) {
+                cipherText.append(currentChar);
+                continue;
             }
-            int x = cipher[i] + 'A';
+
+            // Apply encryption only to alphabetic characters
+            cipher[i - j] = (currentChar - 'A' + key.charAt(i - j) - 'A') % 26;
+
+            if (cipher[i - j] < 0) {
+                cipher[i - j] += 26;
+            }
+
+            int x = cipher[i - j] + 'A';
             cipherText.append((char) x);
         }
 
         return cipherText.toString();
     }
+
 }

@@ -93,21 +93,27 @@ public class OneTimePadDecryptionFragment extends Fragment {
 
         int[] plain = new int[key.length()];
 
-        for (int i = 0; i < key.length(); i++) {
-            plain[i] = s.charAt(i) - 'A' - (key.charAt(i) - 'A');
-        }
+        for (int i = 0, j = 0; i < s.length(); i++) {
+            char currentChar = s.charAt(i);
 
-        for (int i = 0; i < key.length(); i++) {
-            if (plain[i] < 0) {
-                plain[i] = plain[i] + 26;
+            // Skip spaces
+            if (Character.isWhitespace(currentChar)) {
+                plainText.append(currentChar);
+                continue;
             }
-        }
 
-        for (int i = 0; i < key.length(); i++) {
-            int x = plain[i] + 'A';
+            // Apply decryption only to alphabetic characters
+            plain[i - j] = currentChar - 'A' - (key.charAt(i - j) - 'A');
+
+            if (plain[i - j] < 0) {
+                plain[i - j] += 26;
+            }
+
+            int x = plain[i - j] + 'A';
             plainText.append((char) x);
         }
 
         return plainText.toString();
     }
+
 }

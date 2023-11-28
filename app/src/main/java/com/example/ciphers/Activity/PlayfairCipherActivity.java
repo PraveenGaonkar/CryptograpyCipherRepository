@@ -35,8 +35,7 @@ public class PlayfairCipherActivity extends AppCompatActivity {
     MaterialButton encryptMessage, decryptMessage;
     ImageView copyKeyText, copyCipherText;
     TextView keyMatrixTextView;
-    private char[][] keyTable;
-
+private static char[][] keyMatrix;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,8 +57,8 @@ public class PlayfairCipherActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(!plainText.getText().toString().isEmpty() && !key.getText().toString().isEmpty()) {
                     String keyword = key.getText().toString().toUpperCase().trim();
-                    keyTable = generateKeyTable(keyword);
-                    keyTable(keyTable);
+                    createKeyMatrix(keyword);
+                    keyTable(keyMatrix);
                     String message = plainText.getText().toString().toUpperCase().trim();
                     String encryptedText = encryption(message);
                     cipherText.setText(encryptedText);
@@ -160,113 +159,6 @@ public class PlayfairCipherActivity extends AppCompatActivity {
         return keyTable;
     }
 
-    private String preprocessText(String text) {
-        return text.toUpperCase().replaceAll("[^A-Z ]", "");
-    }
-
-    private String encryption(String plainText) {
-        plainText = preprocessText(plainText);
-        StringBuilder cipherText = new StringBuilder();
-
-        for (int i = 0; i < plainText.length(); i += 2) {
-            char firstChar = plainText.charAt(i);
-            char secondChar;
-
-            if (i + 1 < plainText.length()) {
-                secondChar = plainText.charAt(i + 1);
-            } else {
-                // If the plaintext has an odd length, append 'X' to make it even
-                secondChar = 'X';
-            }
-
-            if (firstChar == ' ' || secondChar == ' ') {
-                // If either character is a space, append it directly
-                cipherText.append(firstChar);
-                cipherText.append(secondChar);
-            } else {
-                int[] firstPosition = findCharPosition(firstChar);
-                int[] secondPosition = findCharPosition(secondChar);
-
-                // Apply the Playfair cipher rules
-                if (firstPosition[0] == secondPosition[0]) {
-                    // Same row
-                    cipherText.append(keyTable[firstPosition[0]][(firstPosition[1] + 1) % 5]);
-                    cipherText.append(keyTable[secondPosition[0]][(secondPosition[1] + 1) % 5]);
-                } else if (firstPosition[1] == secondPosition[1]) {
-                    // Same column
-                    cipherText.append(keyTable[(firstPosition[0] + 1) % 5][firstPosition[1]]);
-                    cipherText.append(keyTable[(secondPosition[0] + 1) % 5][secondPosition[1]]);
-                } else {
-                    // Form a rectangle
-                    cipherText.append(keyTable[firstPosition[0]][secondPosition[1]]);
-                    cipherText.append(keyTable[secondPosition[0]][firstPosition[1]]);
-                }
-            }
-        }
-
-        return cipherText.toString();
-    }
-
-    private String decryption(String cipherText) {
-        cipherText = preprocessText(cipherText);
-        StringBuilder plainText = new StringBuilder();
-
-        for (int i = 0; i < cipherText.length(); i += 2) {
-            char firstChar = cipherText.charAt(i);
-            char secondChar;
-
-            if (i + 1 < cipherText.length()) {
-                secondChar = cipherText.charAt(i + 1);
-            } else {
-                // If the ciphertext has an odd length, append 'X' to make it even
-                secondChar = 'X';
-            }
-
-            if (firstChar == ' ' || secondChar == ' ') {
-                // If either character is a space, append it directly
-                plainText.append(firstChar);
-                plainText.append(secondChar);
-            } else {
-                int[] firstPosition = findCharPosition(firstChar);
-                int[] secondPosition = findCharPosition(secondChar);
-
-                // Apply the Playfair cipher decryption rules
-                if (firstPosition[0] == secondPosition[0]) {
-                    // Same row
-                    plainText.append(keyTable[firstPosition[0]][(firstPosition[1] - 1 + 5) % 5]);
-                    plainText.append(keyTable[secondPosition[0]][(secondPosition[1] - 1 + 5) % 5]);
-                } else if (firstPosition[1] == secondPosition[1]) {
-                    // Same column
-                    plainText.append(keyTable[(firstPosition[0] - 1 + 5) % 5][firstPosition[1]]);
-                    plainText.append(keyTable[(secondPosition[0] - 1 + 5) % 5][secondPosition[1]]);
-                } else {
-                    // Form a rectangle
-                    plainText.append(keyTable[firstPosition[0]][secondPosition[1]]);
-                    plainText.append(keyTable[secondPosition[0]][firstPosition[1]]);
-                }
-            }
-        }
-
-        return plainText.toString();
-    }
-
-
-    private int[] findCharPosition(char c) {
-        int[] position = new int[2];
-
-        for (int i = 0; i < 5; i++) {
-            for (int j = 0; j < 5; j++) {
-                if (keyTable[i][j] == c) {
-                    position[0] = i;
-                    position[1] = j;
-                    return position;
-                }
-            }
-        }
-
-        return position;
-    }
-
     private void keyTable(char[][] printTable) {
         StringBuilder keyMatrixText = new StringBuilder("Playfair Cipher Key Matrix:\n\n");
 
@@ -289,5 +181,123 @@ public class PlayfairCipherActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         new MenuInflater(this).inflate(R.menu.option_menu, menu);
         return super.onCreateOptionsMenu(menu);
+    }
+
+    private static void createKeyMatrix(String key) {
+        keyMatrix = new char[5][5];
+        String keyString = sanitizeKey(key);
+        int index = 0;
+
+        // Fill the key matrix with unique letters from the key
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
+                keyMatrix[i][j] = keyString.charAt(index++);
+            }
+        }
+    }
+
+    private static String sanitizeKey(String key) {
+        // Remove duplicate letters from the key and replace 'J' with 'I'
+        StringBuilder sanitizedKey = new StringBuilder();
+        boolean[] seen = new boolean[26];
+
+        for (char c : key.toCharArray()) {
+            if (c == 'J') {
+                c = 'I';
+            }
+            if (!seen[c - 'A']) {
+                sanitizedKey.append(c);
+                seen[c - 'A'] = true;
+            }
+        }
+
+        // Fill the rest of the key matrix with remaining unused letters
+        for (char c = 'A'; c <= 'Z'; c++) {
+            if (c != 'J' && !seen[c - 'A']) {
+                sanitizedKey.append(c);
+            }
+        }
+
+        return sanitizedKey.toString();
+    }
+
+    private static String encryption(String plaintext) {
+        StringBuilder ciphertext = new StringBuilder();
+
+        for (int i = 0; i < plaintext.length(); i += 2) {
+            char first = plaintext.charAt(i);
+            char second = (i + 1 < plaintext.length()) ? plaintext.charAt(i + 1) : 'X';
+
+            // Skip spaces
+            if (Character.isWhitespace(first)) {
+                ciphertext.append(first);
+                i--; // Revisit the same position for the next pair
+                continue;
+            }
+
+            int[] firstPos = findPosition(first);
+            int[] secondPos = findPosition(second);
+
+            if (firstPos[0] == secondPos[0]) { // Same row
+                ciphertext.append(keyMatrix[firstPos[0]][(firstPos[1] + 1) % 5]);
+                ciphertext.append(keyMatrix[secondPos[0]][(secondPos[1] + 1) % 5]);
+            } else if (firstPos[1] == secondPos[1]) { // Same column
+                ciphertext.append(keyMatrix[(firstPos[0] + 1) % 5][firstPos[1]]);
+                ciphertext.append(keyMatrix[(secondPos[0] + 1) % 5][secondPos[1]]);
+            } else { // Forming a rectangle
+                ciphertext.append(keyMatrix[firstPos[0]][secondPos[1]]);
+                ciphertext.append(keyMatrix[secondPos[0]][firstPos[1]]);
+            }
+        }
+
+        return ciphertext.toString();
+    }
+
+    private static String decryption(String ciphertext) {
+        StringBuilder plaintext = new StringBuilder();
+
+        for (int i = 0; i < ciphertext.length(); i += 2) {
+            char first = ciphertext.charAt(i);
+            char second = ciphertext.charAt(i + 1);
+
+            // Skip spaces
+            if (Character.isWhitespace(first)) {
+                plaintext.append(first);
+                i--; // Revisit the same position for the next pair
+                continue;
+            }
+
+            int[] firstPos = findPosition(first);
+            int[] secondPos = findPosition(second);
+
+            if (firstPos[0] == secondPos[0]) { // Same row
+                plaintext.append(keyMatrix[firstPos[0]][(firstPos[1] - 1 + 5) % 5]);
+                plaintext.append(keyMatrix[secondPos[0]][(secondPos[1] - 1 + 5) % 5]);
+            } else if (firstPos[1] == secondPos[1]) { // Same column
+                plaintext.append(keyMatrix[(firstPos[0] - 1 + 5) % 5][firstPos[1]]);
+                plaintext.append(keyMatrix[(secondPos[0] - 1 + 5) % 5][secondPos[1]]);
+            } else { // Forming a rectangle
+                plaintext.append(keyMatrix[firstPos[0]][secondPos[1]]);
+                plaintext.append(keyMatrix[secondPos[0]][firstPos[1]]);
+            }
+        }
+
+        return plaintext.toString();
+    }
+
+    private static int[] findPosition(char c) {
+        int[] result = new int[2];
+
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
+                if (keyMatrix[i][j] == c) {
+                    result[0] = i;
+                    result[1] = j;
+                    return result;
+                }
+            }
+        }
+
+        return result;
     }
 }

@@ -141,7 +141,7 @@
                 android:textStyle="bold"
                 android:textAllCaps="true"
                 android:layout_marginTop="10sp"
-                app:cornerRadius="10dp"/>
+                app:cornerRadius="8dp"/>
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
@@ -184,7 +184,7 @@
                     android:textStyle="bold"
                     android:textAllCaps="true"
                     android:layout_marginTop="10sp"
-                    app:cornerRadius="10dp"/>
+                    app:cornerRadius="8dp"/>
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
     </LinearLayout>
