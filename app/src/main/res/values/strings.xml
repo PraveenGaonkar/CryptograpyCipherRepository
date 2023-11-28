@@ -11,4 +11,290 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="playfair_cipher">Playfair Cipher</string>
+    <string name="theory_aes_intro">
+        AES stands for Advanced Encryption Standard. It is a widely adopted symmetric encryption algorithm established by the U.S. National Institute of Standards and Technology (NIST) in 2001. AES is used to secure sensitive information by encrypting it, making it unreadable without the appropriate key. It operates on fixed-size blocks of data and supports key sizes of 128, 192, and 256 bits. AES has become a global standard for encryption and is used in various applications, including secure communication over the internet, file encryption, and data protection.
+    </string>
+    <string name="aes_algorithm">
+        <b>Key Generation:</b>\n
+        <b>Key Expansion:</b> The original key, which can be 128, 192, or 256 bits, is expanded into a set of round keys.
+        The key expansion involves creating additional round keys from the original key using a key schedule.\n
+        <b>Round Key Generation:</b>For each round (10 rounds for a 128-bit key, 12 rounds for a 192-bit key, and 14 rounds for a 256-bit key), a round key is generated from the expanded key.\n\n\n
+
+        <b>Encryption:</b>\n
+        <b>Initial Round Key Addition:</b>The plaintext block is XORed with the first round key.\n
+        <b>Rounds (for 128-bit key):</b>\n
+        1. SubBytes: Each byte in the block is replaced with a corresponding byte from the S-box (a predefined substitution table).\n
+        2. ShiftRows: Bytes in each row are shifted cyclically to the left.\n
+        3. MixColumns: Each column of the state is mixed using a mathematical function.\n
+        4. AddRoundKey: The round key is XORed with the state.\v
+        <b>Final Round (for all key sizes):</b>\v
+        1. SubBytes\n
+        2. ShiftRows\n
+        3. AddRoundKey (without MixColumns)\n
+
+        <b>Output:</b>\n
+        The final state represents the encrypted data.\n\n\n
+
+        <b>Decryption:</b>\n
+        <b>Initial Round Key Addition:</b>The ciphertext block is XORed with the last round key used in encryption.\n
+
+        <b>Rounds (for 128-bit key):</b>\n
+        <b>InvShiftRows:</b> Reverse the row shifts performed during encryption.\n
+        <b>InvSubBytes:</b> Reverse the byte substitutions performed during encryption.\n
+        <b>AddRoundKey:</b> XOR the state with the round key.\n
+
+        <b>Final Round (for all key sizes):</b>\n
+        1. InvShiftRows\n
+        2. InvSubBytes\n
+        3. AddRoundKey (without InvMixColumns)\n
+
+        <b>Output:</b>\n
+        The final state represents the decrypted data.\n
+    </string>
+    <string name="theory_des_intro">
+        DES stands for Data Encryption Standard. It is an early symmetric encryption algorithm that was developed in the 1970s. DES operates on fixed-size blocks of data (64 bits) and uses a key size of 56 bits. The algorithm involves a series of rounds, each performing operations like substitution, permutation, and XOR to encrypt and decrypt data. Over time, DES has become less secure due to its small key size, and it has been largely replaced by more advanced encryption algorithms. Triple DES (3DES) is a variation that applies DES three times with different keys for enhanced security, but it is considered slow compared to modern alternatives like AES.
+    </string>
+    <string name="des_algorithm">
+        <b>Key Generation:</b>\n
+        <b>Key Permutation:</b>\n
+        The original 56-bit key is permuted to generate two 28-bit halves.\n
+
+        <b>Round Key Generation:</b>\n
+        1. 16 subkeys, each 48 bits long, are derived from the 56-bit key.\n
+        2. The two 28-bit halves are individually rotated left by a variable number of bits in each round, and then a 48-bit key is derived from the rotated halves.\n\n\n
+
+        <b>Encryption:</b>\n
+        <b>Initial Permutation (IP):</b>\n
+        The 64-bit plaintext block undergoes an initial permutation.\n
+
+        <b>Rounds (16 rounds for DES):</b>\n
+        <b>Expansion:</b> The 32-bit right half is expanded to 48 bits.\n
+        <b>Subkey Mixing:</b> The expanded half is XORed with the round key.\n
+        <b>Substitution (S-boxes):</b> The 48-bit result is divided into eight 6-bit blocks, each of which is substituted using an S-box (a predefined 4x16 table).\n
+        <b>Permutation:</b> The results from the S-boxes are permuted.\n
+        <b>XOR with Left Half:</b> The permuted result is XORed with the 32-bit left half.\n
+
+        <b>Swap:</b>\n
+        The left and right halves are swapped.\n
+
+        <b>Final Permutation (IP^(-1)):</b>\n
+        The 64-bit block undergoes a final permutation.\n\n\n
+
+        <b>Decryption:</b>\n
+        The decryption process is similar to encryption but with the subkeys used in reverse order.\n
+
+        <b>Initial Permutation (IP):</b>\n
+        The 64-bit ciphertext block undergoes an initial permutation.\n
+
+        <b>Rounds (16 rounds for DES):</b>\n
+        1. Expansion\n
+        2. Subkey Mixing (using subkeys in reverse order)\n
+        3. Substitution (S-boxes)\n
+        4. Permutation\n
+        5. XOR with Left Half\n
+
+        <b>Swap:</b>\n
+        The left and right halves are swapped.\n
+
+        <b>Final Permutation (IP^(-1)):</b>\n
+        The 64-bit block undergoes a final permutation.\n
+    </string>
+
+    <string name="theory_caesar_cipher_intro">
+       The Caesar cipher is a simple and historical encryption technique that involves shifting the letters of the alphabet by a fixed number of positions. It is named after Julius Caesar, who is historically attributed to have used this cipher for secure communication.
+    </string>
+    <string name="caesar_cipher_algorithm">
+    <b>Key Generation:</b>\n
+    The key in the Caesar cipher is the fixed number of positions each letter is shifted. This value is the key for both encryption and decryption.\n\n\n
+
+        <b>Encryption Algorithm:</b>\n
+        <b>Input:</b> Plain text (message) and a key (shift value).\n
+        <b>Algorithm:</b>\n
+        <b>For each letter in the plaintext:</b>\n
+        1. If the letter is uppercase, shift it by the key value to the right in the alphabet.\n
+        2. If the letter is lowercase, do the same for the lowercase alphabet.\n
+        3. Wrap around to the beginning of the alphabet if needed.\n
+        <b>For example, with a shift of 3:</b>\n
+        "A" becomes "D"\n
+        "B" becomes "E"\n
+        "C" becomes "F"\n
+        ...\n
+        "X" becomes "A"\n
+        "Y" becomes "B"\n
+        "Z" becomes "C"\n
+        <b>Output:</b>
+        Ciphertext (encrypted message).\n\n\n
+
+        <b>Decryption Algorithm:</b>\n
+        <b>Input:</b> Ciphertext (encrypted message) and the same key (shift value).\n
+        <b>Algorithm:</b>\n
+        <b>For each letter in the ciphertext:</b>\n
+        1. If the letter is uppercase, shift it by the key value to the left in the alphabet.\n
+        2. If the letter is lowercase, do the same for the lowercase alphabet.\n
+        3. Wrap around to the end of the alphabet if needed.\n
+        <b>For example, with a shift of 3:</b>\n
+        "D" becomes "A"\n
+        "E" becomes "B"\n
+        "F" becomes "C"\n
+        ...\n
+        "A" becomes "X"\n
+        "B" becomes "Y"\n
+        "C" becomes "Z"\n
+        <b>Output:</b>\n
+        Decrypted text (original plaintext).\n
+    </string>
+    <string name="theory_vigenere_cipher_intro">
+       The Vigenère cipher is a method of encrypting alphabetic text by using a simple form of polyalphabetic substitution. Unlike the Caesar cipher, which shifts all the letters by a fixed amount, the Vigenère cipher uses a keyword to determine the shift for each letter in the plaintext. This makes the Vigenère cipher more secure than the Caesar cipher.
+    </string>
+    <string name="vigenere_cipher_algorithm">
+        <b>Key Generation:</b>\n
+        The key in the Vigenère cipher is a keyword. The key is repeated to match the length of the plaintext.\n\n\n
+
+        <b>Encryption Algorithm:</b>\n
+        <b>Input:</b> Plain text (message) and a key (keyword).\n
+        <b>Algorithm:</b>\n
+        Repeat the key to match the length of the plaintext.\n
+        <b>For each letter in the plaintext:</b>\n
+        1. If the letter is uppercase, shift it by the corresponding letter in the key to the right in the alphabet.\n
+        2. If the letter is lowercase, do the same for the lowercase alphabet.\n
+        3. Wrap around to the beginning of the alphabet if needed.\n
+        <b>For example, if the keyword is "KEY" and the plaintext letter is "P":</b>\n
+        1. "P" is at position 15 in the alphabet.\n
+        2. "K" is at position 10 in the alphabet (using the corresponding letter from the keyword).\n
+        3. The ciphertext letter would be "P" shifted by 10 positions, resulting in "Z."\n
+        <b>Output:</b>\n
+        Ciphertext (encrypted message).\n\n\n
+
+        <b>Decryption Algorithm:</b>\n
+        <b>Input:</b> Ciphertext (encrypted message) and the same key (keyword).\n
+        <b>Algorithm:</b>\n
+        Repeat the key to match the length of the ciphertext.\n
+        <b>For each letter in the ciphertext:</b>\n
+        1. If the letter is uppercase, shift it by the corresponding letter in the key to the left in the alphabet.\n
+        2. If the letter is lowercase, do the same for the lowercase alphabet.\n
+        3. Wrap around to the end of the alphabet if needed.\n
+        <b>For example, if the keyword is "KEY" and the ciphertext letter is "Z":</b>\n
+        1. "Z" is at position 25 in the alphabet.\n
+        2. "K" is at position 10 in the alphabet (using the corresponding letter from the keyword).\n
+        3. The decrypted letter would be "Z" shifted by 10 positions to the left, resulting in "P."\n
+        <b>Output:</b>\n
+        Decrypted text (original plaintext).\n
+    </string>
+
+    <string name="theory_one_time_pad_intro">
+          The One-Time Pad (OTP) is a symmetric-key encryption technique that provides perfect secrecy when used correctly. It is a type of encryption where each bit or character of the plaintext is encrypted with a unique, randomly generated key. The key used for encryption is as long as the message itself and is never reused for any other message. The key, therefore, must be as long as the message and should only be used once—hence the name "one-time pad."
+    </string>
+    <string name="one_time_pad_algorithm">
+        <b>Key Generation:</b>\n
+        <b>Random Key Generation:</b>\n
+        Generate a truly random key that is as long as the plaintext message.\n
+        The key can consist of random bits or characters.\n\n\n
+
+        <b>Encryption:</b>\n
+        <b>Input:</b> Plaintext message to be encrypted. The truly random key generated.\n
+        <b>Algorithm:</b>\n
+        1. Perform an XOR (exclusive OR) operation between each bit or character of the plaintext and the corresponding bit or character in the key.\n
+        2. If the plaintext is represented as a binary sequence, bitwise XOR each bit.\n
+        3. If the plaintext is represented as characters, XOR the ASCII values of the characters.\n
+        4. For example, if the plaintext is "01011010" and the key is "10100101", the ciphertext would be "11111111" because (0 XOR 1 = 1, 1 XOR 0 = 1, etc.).\n
+        <b>Output:</b>\n
+        The result of the XOR operation is the ciphertext.\n\n\n
+
+        <b>Decryption:</b>\n
+        <b>Input:</b>Ciphertext to be decrypted. The same truly random key used for encryption.\n
+        <b>Algorithm:</b>\n
+        1. Perform the same XOR operation between each bit or character of the ciphertext and the corresponding bit or character in the key.\n
+        2. For example, if the ciphertext is "11111111" and the key is "10100101", the original plaintext would be "01011010".\n
+        <b>Output:</b>\n
+        The result of the XOR operation is the original plaintext.\n
+    </string>
+
+    <string name="theory_playfair_cipher_intro">
+        The Playfair cipher is a manual symmetric encryption technique that was invented by Charles Wheatstone in 1854 and later promoted by Lyon Playfair. It is a type of digraph substitution cipher where each letter is represented by a pair of letters (digraphs).
+    </string>
+    <string name="playfair_cipher_algorithm">
+        <b>Key Generation:</b>\n
+        <b>Key Table (Key Matrix) Creation:</b>\n
+        1. Start with a keyword (e.g., "KEYWORD").\n
+        2. Build a 5x5 key table (also called a key matrix) using the keyword.\n
+        3. Fill in the table with the unique letters of the keyword, avoiding repetitions.\n
+        4. Fill in the remaining spaces with the remaining letters of the alphabet, excluding "J" (which is often combined with "I").\n
+        <b>Example key table with the keyword "KEYWORD":</b>\n
+        K E Y W O\n
+        R D A B C\n
+        F G H I L\n
+        M N P Q S\n
+        T U V X Z\n\n
+
+        <b>Encryption:</b>
+        <b>Plaintext Preparation:</b>
+        1. Break the plaintext into pairs of letters (digraphs).
+        2. Adjust the plaintext as needed (e.g., add an "X" between repeated letters or append an "X" if the length is odd).
+        <b>Digraph Encryption:</b>
+        <b>For each digraph:</b>
+        1. If the two letters are in the same row, replace each letter with the letter to its right (wrapping around to the left if necessary).
+        2. If the two letters are in the same column, replace each letter with the letter below it (wrapping around to the top if necessary).
+        3. If the two letters form a rectangle, replace each letter with the letter at the opposite corner of the rectangle.
+        <b>Example encryption:</b>
+        <b>Plaintext:</b> "HELLO"\n
+        <b>Digraphs:</b> "HE," "LX," "LO" (adding an "X" to "LL" to avoid issues with repeated letters)\n
+        <b>Encrypted digraphs:</b> "RC," "LQ," "LD"\n\n\n
+
+        <b>Decryption:</b>\n
+        <b>Ciphertext Digraphs:</b>\n
+        Break the ciphertext into pairs of letters (digraphs).\n
+        <b>Digraph Decryption:</b>\n
+        <b>For each digraph:</b>\n
+        1. If the two letters are in the same row, replace each letter with the letter to its left.\n
+        2. If the two letters are in the same column, replace each letter with the letter above it.\n
+        3. If the two letters form a rectangle, replace each letter with the letter at the opposite corner of the rectangle.\n
+        <b>Example decryption:</b>\n
+        <b>Ciphertext:</b> "RC," "LQ," "LD"\n
+        <b>Decrypted digraphs:</b> "HE," "LX," "LO"\n
+    </string>
+
+    <string name="theory_affine_cipher_intro">
+        The Affine cipher is a type of monoalphabetic substitution cipher, which means it substitutes one letter of the alphabet for another during encryption. However, unlike simple substitution ciphers like the Caesar cipher, the Affine cipher uses a mathematical function to determine the encryption mapping.\n
+        The general formula for the Affine cipher is:\n
+            E(x)=(ax+b)mod m \n
+        1. E(x) is the encryption function.\n
+        2. x is the numerical value of the plaintext letter (e.g., A is 0, B is 1, and so on).\n
+        3. a and b are the key values, where a and m are coprime (they have no common factors other than 1).\n
+        4. m is the size of the alphabet (26 for English).\n\n
+
+        The decryption function is:\n
+            D(y)=a−1 (y−b)mod m \n
+        1. D(y) is the decryption function.\n
+        2. y is the numerical value of the ciphertext letter.\n
+        3. a−1 is the modular multiplicative inverse of a modulo m.\n
+        4. b is the second key value.\n
+
+        a and m are co prime to ensure the existence of the modular multiplicative inverse.\nIn the Affine cipher, each letter in the plaintext is mapped to its numerical value, transformed using the encryption function, and then mapped back to a letter. The same process is applied in reverse during decryption.\n
+    </string>
+    <string name="affine_cipher_algorithm">
+        <b>Key Generation:</b>\n
+        <b>Choose Key Values:</b>\n
+        1. Select two key values, a and b.\n
+        2. a and m (the size of the alphabet) should be coprime (they have no common factors other than 1).\n\n\n
+
+        <b>Encryption Algorithm:</b>
+        <b>Plaintext to Numerical Values:</b>
+        Map each letter in the plaintext to its numerical equivalent (e.g., A is 0, B is 1, and so on).\n
+
+        <b>Encryption:</b>\n
+        1. Use the formula E(x)=(ax+b)mod m for each numerical value of the plaintext.\n
+        2. Convert the resulting numerical values back to letters.\n\n\n
+
+        <b>Decryption Algorithm:</b>\n
+        <b>Find the Modular Multiplicative Inverse:</b>\n
+        1. Calculate the modular multiplicative inverse of a modulo m.\n
+        2. The modular multiplicative inverse is a number a−1 such that a⋅a−1 ≡ 1 mod m.\n
+
+        <b>Ciphertext to Numerical Values:</b>\n
+        Map each letter in the ciphertext to its numerical equivalent.\n
+
+        <b>Decryption:</b>\n
+        1. Use the formula D(y)=a−1(y−b)mod m for each numerical value of the ciphertext.\n
+        2. Convert the resulting numerical values back to letters.\n\n
+    </string>
 </resources>

@@ -24,6 +24,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentEnd="true"
                 android:backgroundTint="#EC6800"
+                app:fabSize="mini"
                 android:tint="@color/white"
                 android:src="@drawable/baseline_lock_24"
                 app:useCompatPadding="true"
@@ -34,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:text="Ciphers Name"
-                android:textSize="25sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="#002E48"
                 android:layout_gravity="center_vertical">

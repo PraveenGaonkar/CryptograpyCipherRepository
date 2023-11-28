@@ -5,10 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.example.ciphers.Adapter.ViewPagerViginereCipherAdapter;
+import com.example.ciphers.Algorithms.CaesarCipherAlgorithm;
+import com.example.ciphers.Algorithms.VigenereCipherAlgorithm;
 import com.example.ciphers.R;
 import com.google.android.material.tabs.TabLayout;
 
@@ -38,6 +43,11 @@ public class VigenereCipherActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int itemId = item.getItemId();
+        if(itemId == R.id.algorithm){
+            Intent intent = new Intent(VigenereCipherActivity.this, VigenereCipherAlgorithm.class);
+            startActivity(intent);
+        }
         switch (item.getItemId()) {
             case android.R.id.home:
                 onBackPressed();
@@ -45,5 +55,11 @@ public class VigenereCipherActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        new MenuInflater(this).inflate(R.menu.option_menu, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 }

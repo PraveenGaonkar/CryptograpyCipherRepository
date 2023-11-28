@@ -8,7 +8,10 @@ import androidx.viewpager.widget.ViewPager;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -16,6 +19,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ciphers.Algorithms.OneTimePadAlgorithm;
+import com.example.ciphers.Algorithms.PlayfairCipherAlgorithm;
 import com.example.ciphers.R;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.tabs.TabLayout;
@@ -113,6 +118,11 @@ public class PlayfairCipherActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int itemId = item.getItemId();
+        if(itemId == R.id.algorithm){
+            Intent intent = new Intent(PlayfairCipherActivity.this, PlayfairCipherAlgorithm.class);
+            startActivity(intent);
+        }
         switch (item.getItemId()) {
             case android.R.id.home:
                 onBackPressed();
@@ -273,5 +283,11 @@ public class PlayfairCipherActivity extends AppCompatActivity {
         if (keyMatrixTextView != null) {
             keyMatrixTextView.setText(matrixText);
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        new MenuInflater(this).inflate(R.menu.option_menu, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 }

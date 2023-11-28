@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorToolBar"
-            app:subtitle="AES"
+            app:subtitle="Advanced Encryption Standard(AES)"
             app:subtitleTextColor="@color/white"
             app:titleTextColor="@color/white">
         </androidx.appcompat.widget.Toolbar>
@@ -71,21 +71,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
-                    <TextView
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/generateKey"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="KEY"
+                        android:text="GENERATE KEY"
                         android:textStyle="bold"
-                        android:padding="10dp"
-                        android:textColor="#FB3C00"/>
-                    <ImageView
-                        android:id="@+id/copyKeyText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="260dp"
-                        android:layout_gravity="center"
-                        android:src="@drawable/baseline_content_copy_24">
-                    </ImageView>
+                        app:cornerRadius="10dp">
+                    </com.google.android.material.button.MaterialButton>
                 </LinearLayout>
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
@@ -96,6 +89,8 @@
                         android:layout_height="wrap_content"
                         android:hint="Enter key...."
                         android:gravity="start"
+                        android:clickable="false"
+                        android:enabled="false"
                         android:inputType="text"
                         android:lines="3"/>
                 </com.google.android.material.textfield.TextInputLayout>
@@ -117,14 +112,6 @@
                         android:textStyle="bold"
                         android:padding="10dp"
                         android:textColor="#FB3C00"/>
-                    <ImageView
-                        android:id="@+id/copyCipherText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="205dp"
-                        android:layout_gravity="center"
-                        android:src="@drawable/baseline_content_copy_24">
-                    </ImageView>
                 </LinearLayout>
 
                 <com.google.android.material.textfield.TextInputLayout

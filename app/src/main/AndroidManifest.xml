@@ -13,6 +13,30 @@
         android:theme="@style/Theme.Ciphers"
         tools:targetApi="31">
         <activity
+            android:name=".Algorithms.AffineCipherAlgorithm"
+            android:exported="false" />
+        <activity
+            android:name=".Algorithms.PlayfairCipherAlgorithm"
+            android:exported="false" />
+        <activity
+            android:name=".Algorithms.OneTimePadAlgorithm"
+            android:exported="false" />
+        <activity
+            android:name=".Algorithms.VigenereCipherAlgorithm"
+            android:exported="false" />
+        <activity
+            android:name=".Algorithms.CaesarCipherAlgorithm"
+            android:exported="false" />
+        <activity
+            android:name=".Algorithms.AESAlgorithm"
+            android:exported="false" />
+        <activity
+            android:name=".Algorithms.DESAlgorithm"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.DESActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activity.AESActivity"
             android:exported="false" />
         <activity

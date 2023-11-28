@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.ciphers.Activity.AESActivity;
 import com.example.ciphers.Activity.AffineCipherActivity;
 import com.example.ciphers.Activity.CaesarCipherActivity;
+import com.example.ciphers.Activity.DESActivity;
 import com.example.ciphers.Activity.OneTimePadActivity;
 import com.example.ciphers.Activity.PlayfairCipherActivity;
 import com.example.ciphers.Activity.VigenereCipherActivity;
@@ -60,8 +61,10 @@ public class CipherListAdapter extends RecyclerView.Adapter<CipherListAdapter.Vi
                     intent = new Intent(context, PlayfairCipherActivity.class);
                 }else if("Affine Cipher".equals(cipherList.get(holder.getAdapterPosition()).getName())){
                     intent = new Intent(context, AffineCipherActivity.class);
-                }else{
+                }else if("Advanced Encryption Algorithm".equals(cipherList.get(holder.getAdapterPosition()).getName())){
                     intent = new Intent(context, AESActivity.class);
+                }else {
+                    intent = new Intent(context, DESActivity.class);
                 }
                 context.startActivity(intent);
             }

@@ -41,7 +41,8 @@ public class MainActivity extends AppCompatActivity {
         arrCipher.add(new CipherModel("One Time Pad"));
         arrCipher.add(new CipherModel("Playfair Cipher"));
         arrCipher.add(new CipherModel("Affine Cipher"));
-        arrCipher.add(new CipherModel("AES"));
+        arrCipher.add(new CipherModel("Advanced Encryption Algorithm"));
+        arrCipher.add(new CipherModel("Data Encryption Algorithm"));
         return arrCipher;
     }
 }

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Algorithms.AESAlgorithm">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorToolBar"
+            app:subtitle="Advanced Encryption Standard(AES)"
+            app:subtitleTextColor="@color/white"
+            app:titleTextColor="@color/white">
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="10dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Theory"
+                android:textStyle="bold"
+                android:padding="5dp"
+                android:textSize="20dp"
+                android:textAllCaps="true">
+            </TextView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/theory_aes_intro"
+                android:padding="5dp"
+                android:textSize="13sp">
+            </TextView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Algorithm"
+                android:textStyle="bold"
+                android:padding="5dp"
+                android:textSize="20dp"
+                android:textAllCaps="true">
+            </TextView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/aes_algorithm"
+                android:padding="5dp"
+                android:textSize="13sp">
+            </TextView>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
