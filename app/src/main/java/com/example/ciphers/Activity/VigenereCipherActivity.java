@@ -8,12 +8,11 @@ import androidx.viewpager.widget.ViewPager;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.example.ciphers.Adapter.ViewPagerCaesarCipherAdapter;
 import com.example.ciphers.Adapter.ViewPagerViginereCipherAdapter;
 import com.example.ciphers.R;
 import com.google.android.material.tabs.TabLayout;
 
-public class ViginereCipherActivity extends AppCompatActivity {
+public class VigenereCipherActivity extends AppCompatActivity {
 
     Toolbar toolbar;
     TabLayout tabLayout;
@@ -22,7 +21,7 @@ public class ViginereCipherActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_viginere_cipher);
+        setContentView(R.layout.activity_vigenere_cipher);
         toolbar = findViewById(R.id.toolbar);
         tabLayout = findViewById(R.id.tabLayout);
         viewPager = findViewById(R.id.viewPager);

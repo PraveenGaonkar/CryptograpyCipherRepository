@@ -22,7 +22,7 @@
             android:name=".Activity.PlayfairCipherActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.ViginereCipherActivity"
+            android:name=".Activity.VigenereCipherActivity"
             android:exported="false" />
         <activity
             android:name=".Activity.CaesarCipherActivity"

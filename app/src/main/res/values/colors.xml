@@ -4,5 +4,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="colorPrimary">#1C709F</color>
     <color name="colorPrimaryDark">#314375</color>
-    <color name="colorToolBar">#061F63</color>
+    <color name="colorToolBar">#1C709F</color>
 </resources>
