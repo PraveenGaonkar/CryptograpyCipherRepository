@@ -15,7 +15,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/colorToolBar"
-                app:subtitle="PlayFair Cipher"
+                app:subtitle="Playfair Cipher"
                 app:subtitleTextColor="@color/white"
                 app:titleTextColor="@color/white">
             </androidx.appcompat.widget.Toolbar>
